@@ -1,0 +1,74 @@
+{
+  "name": "@developwise/envy",
+  "version": "1.0.0",
+  "description": "Vite-based tooling for environment variable cascade loading, schema validation, type generation, and process.env injection.",
+  "license": "MIT",
+  "bin": {
+    "envy": "./dist/bin/index.mjs"
+  },
+  "files": [
+    "dist",
+    "docs/README.md",
+    "docs/concepts.md",
+    "docs/setup.md",
+    "templates"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.mts",
+        "default": "./dist/src/index.mjs"
+      },
+      "require": {
+        "types": "./dist/src/index.d.cts",
+        "default": "./dist/src/index.cjs"
+      }
+    },
+    "./load-env-var": {
+      "import": {
+        "types": "./dist/src/load-env-var.d.mts",
+        "default": "./dist/src/load-env-var.mjs"
+      },
+      "require": {
+        "types": "./dist/src/load-env-var.d.cts",
+        "default": "./dist/src/load-env-var.cjs"
+      }
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "build:package": "vp run build",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "format": "vp fmt --write",
+    "format-check": "vp fmt --check",
+    "lint": "vp lint $(git ls-files --cached --others --exclude-standard '*.ts' ':!templates/**')",
+    "type-check": "vp exec tsc -p tsconfig.json --noEmit",
+    "check": "vp run format-check && vp run lint && vp run type-check",
+    "pack:dry": "npm pack --dry-run",
+    "prepublishOnly": "vp run check && vp test && vp run build:package"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "dotenv": "^17.4.2",
+    "dotenv-expand": "^13.0.0",
+    "tsx": "^4.21.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "^0.18.2",
+    "@types/node": "^25.5.0",
+    "@typescript/native-preview": "7.0.0-dev.20260328.1",
+    "bumpp": "^11.0.1",
+    "publint": "^0.3.18",
+    "typescript": "^6.0.2",
+    "vite-plus": "^0.1.14"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

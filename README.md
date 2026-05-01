@@ -1,29 +1,9 @@
-# Vite+ Monorepo Starter
+# Developwise
 
-A starter for creating a Vite+ monorepo.
+> A collection of modern tools that make development more productive.
 
-## Development
+## Packages
 
-- Check everything is ready:
-
-```bash
-vp run ready
-```
-
-- Run the tests:
-
-```bash
-vp run -r test
-```
-
-- Build the monorepo:
-
-```bash
-vp run -r build
-```
-
-- Run the development server:
-
-```bash
-vp run dev
-```
+| Package                              | Description                                                                                                                   | Version                                                                                                                |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [@developwise/envy](./packages/envy) | Vite-based tooling for environment variable cascade loading, schema validation, type generation, and `process.env` injection. | [![envy version](https://img.shields.io/npm/v/@developwise/envy.svg)](https://www.npmjs.com/package/@developwise/envy) |
