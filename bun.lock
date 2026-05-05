@@ -7,6 +7,7 @@
       "devDependencies": {
         "@commitlint/config-conventional": "^20.5.3",
         "@j178/prek": "^0.3.11",
+        "@total-typescript/ts-reset": "catalog:",
         "@types/node": "catalog:",
         "commitizen": "^4.3.1",
         "commitlint": "^20.5.3",
@@ -31,6 +32,7 @@
       },
       "devDependencies": {
         "@arethetypeswrong/core": "^0.18.2",
+        "@total-typescript/ts-reset": "^0.6.1",
         "@types/node": "^25.5.0",
         "@typescript/native-preview": "7.0.0-dev.20260328.1",
         "bumpp": "^11.0.1",
@@ -45,6 +47,7 @@
     "vitest": "catalog:",
   },
   "catalog": {
+    "@total-typescript/ts-reset": "^0.6.1",
     "@types/node": "^24",
     "typescript": "^5",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
@@ -301,6 +304,8 @@
     "@sindresorhus/merge-streams": ["@sindresorhus/merge-streams@4.0.0", "", {}, "sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ=="],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
+
+    "@total-typescript/ts-reset": ["@total-typescript/ts-reset@0.6.1", "", {}, "sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg=="],
 
     "@types/chai": ["@types/chai@5.2.3", "", { "dependencies": { "@types/deep-eql": "4.0.2", "assertion-error": "2.0.1" } }, "sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA=="],
 

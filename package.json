@@ -32,6 +32,7 @@
       "tools/*"
     ],
     "catalog": {
+      "@total-typescript/ts-reset": "^0.6.1",
       "@types/node": "^24",
       "typescript": "^5",
       "vite": "npm:@voidzero-dev/vite-plus-core@latest",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^20.5.3",
     "@j178/prek": "^0.3.11",
+    "@total-typescript/ts-reset": "catalog:",
     "@types/node": "catalog:",
     "commitizen": "^4.3.1",
     "commitlint": "^20.5.3",
