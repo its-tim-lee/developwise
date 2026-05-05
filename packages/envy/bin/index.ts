@@ -37,8 +37,8 @@ function readPackageVersion(): string {
 
 function runCheck(options: CheckCommandOptions, stdout: (message: string) => void): void {
   checkEnv({
-    appEnv: options.appEnv,
     stdout,
+    ...(options.appEnv === undefined ? {} : { appEnv: options.appEnv }),
   });
 }
 

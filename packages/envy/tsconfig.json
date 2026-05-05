@@ -1,21 +1,29 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["es2023"],
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "moduleDetection": "force",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "resolveJsonModule": true,
     "types": ["node"],
-    "strict": true,
-    "noUnusedLocals": true,
-    "declaration": true,
     "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noImplicitOverride": true,
+    "noErrorTruncation": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": ["bin/**/*.ts", "src/**/*.ts", "tests/**/*.ts", "vite.config.ts"]
+  "include": ["bin/**/*.ts", "src/**/*.ts", "templates/**/*.ts", "tests/**/*.ts", "vite.config.ts"],
+  "exclude": ["dist", "node_modules"]
 }
