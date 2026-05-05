@@ -2,13 +2,37 @@
   "name": "@developwise/envy",
   "version": "1.0.2",
   "description": "Vite-based tooling for environment variable cascade loading, schema validation, type generation, and process.env injection.",
+  "keywords": [
+    "dotenv",
+    "env-validation",
+    "environment-variables",
+    "envy",
+    "process-env",
+    "typescript",
+    "vite",
+    "vite-plugin",
+    "zod"
+  ],
+  "homepage": "https://github.com/its-tim-lee/developwise/tree/main/packages/envy#readme",
+  "bugs": {
+    "url": "https://github.com/its-tim-lee/developwise/issues"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Tim Lee",
+    "url": "https://github.com/its-tim-lee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-tim-lee/developwise.git",
+    "directory": "packages/envy"
+  },
+  "funding": "https://buymeacoffee.com/timlee",
   "bin": {
     "envy": "dist/bin/index.mjs"
   },
   "files": [
     "dist",
-    "docs/README.md",
     "docs/concepts.md",
     "docs/setup.md",
     "templates"
