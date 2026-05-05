@@ -1,9 +1,27 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "moduleDetection": "force",
+    "types": ["node"],
     "noEmit": true,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "strict": true,
+    "skipLibCheck": true,
     "allowImportingTsExtensions": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noImplicitOverride": true,
+    "noErrorTruncation": true
+  },
+  "include": ["**/*.ts", ".*.ts", ".*/**/*.ts"],
+  "exclude": ["packages", "node_modules"]
 }

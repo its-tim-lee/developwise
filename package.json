@@ -52,6 +52,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^20.5.3",
     "@j178/prek": "^0.3.11",
+    "@types/node": "catalog:",
     "commitizen": "^4.3.1",
     "commitlint": "^20.5.3",
     "cz-conventional-changelog": "^3.3.0",
