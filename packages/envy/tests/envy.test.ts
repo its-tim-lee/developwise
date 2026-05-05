@@ -1,14 +1,13 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
 import { afterEach, expect, test } from "vite-plus/test";
 import { resolveProjectEnv, loadProjectEnv } from "../src/helpers/index.ts";
 import { renderEnvTypeContent } from "../src/commands/generate-env-types/helpers.ts";
 import { defineEnvVarPlugin } from "../src/index.ts";
 
 const tempProjectPaths: string[] = [];
-const publicIndexUrl = pathToFileURL(path.resolve("src/index.ts")).href;
+const publicIndexUrl = new URL("../src/index.ts", import.meta.url).href;
 
 async function createTempProject(): Promise<string> {
   const cwd = await mkdtemp(path.join(tmpdir(), "envy-test-"));

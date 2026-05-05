@@ -2,7 +2,7 @@
 
 ## Installation
 
-Run below (replace `<package-manager>` with yours: `npm`, `pnpm`, or `yarn`):
+Run below (replace `<package-manager>` with yours: `npm`, `pnpm`, `yarn`, or `bun`):
 
 ```bash
 <package-manager> add -D @developwise/envy
