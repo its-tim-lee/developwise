@@ -1,10 +1,10 @@
 {
   "name": "@developwise/envy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Vite-based tooling for environment variable cascade loading, schema validation, type generation, and process.env injection.",
   "license": "MIT",
   "bin": {
-    "envy": "./dist/bin/index.mjs"
+    "envy": "dist/bin/index.mjs"
   },
   "files": [
     "dist",
@@ -50,7 +50,8 @@
     "type-check": "vp exec tsc -p tsconfig.json --noEmit",
     "check": "vp run format-check && vp run lint && vp run type-check",
     "pack:dry": "npm pack --dry-run",
-    "prepublishOnly": "vp run check && vp test && vp run build:package"
+    "prepublishOnly": "vp run check && vp test && vp run build:package",
+    "release": "npm publish --access public"
   },
   "dependencies": {
     "commander": "^14.0.3",

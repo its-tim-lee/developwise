@@ -1,0 +1,19 @@
+name: Release metadata check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Verify generated release metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: "24"
+          cache: true
+      - run: vp install --frozen-lockfile
+      - run: vp run check:release-please

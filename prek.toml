@@ -1,0 +1,15 @@
+default_install_hook_types = ["pre-commit", "commit-msg", "post-commit"]
+
+[[repos]]
+repo = "local"
+hooks = [
+  { id = "vp-staged", name = "Vite+ staged checks", language = "system", entry = "/Users/tim/.vite-plus/bin/vp staged", stages = [
+    "pre-commit",
+  ], pass_filenames = false },
+  { id = "commit-msg", name = "commitlint", language = "system", entry = "/Users/tim/.bun/bin/bun .prek/hooks/commit-msg.ts", stages = [
+    "commit-msg",
+  ], pass_filenames = true },
+  { id = "post-commit-release-metadata", name = "regenerate release metadata when package topology changes", language = "system", entry = "/Users/tim/.bun/bin/bun .prek/hooks/post-commit.ts", stages = [
+    "post-commit",
+  ], pass_filenames = false, always_run = true },
+]

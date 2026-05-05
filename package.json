@@ -18,11 +18,22 @@
   },
   "type": "module",
   "scripts": {
-    "ready": "vp fmt --check && vp run -r check && vp run -r test && vp run -r build",
+    "ready": "vp fmt --check && vp run check && vp run check:release-please && vp run -r check && vp run -r test && vp run -r build",
+    "check": "vp check package.json vite.config.ts commitlint.config.ts .czrc.ts metadata/**/*.ts scripts/**/*.ts .prek/hooks/**/*.ts",
     "dev": "vp run -r --parallel dev",
-    "prepare": "vp config"
+    "prepare": "prek install",
+    "commit": "cz",
+    "generate:release-please": "tsx scripts/generate-release-please-configs.ts",
+    "check:release-please": "tsx scripts/generate-release-please-configs.ts --check"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^20.5.3",
+    "@j178/prek": "^0.3.11",
+    "commitizen": "^4.3.1",
+    "commitlint": "^20.5.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "globby": "^16.2.0",
+    "tsx": "^4.21.0",
     "vite-plus": "catalog:"
   },
   "overrides": {

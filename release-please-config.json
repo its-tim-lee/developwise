@@ -1,0 +1,15 @@
+{
+  "release-type": "simple",
+  "separate-pull-requests": false,
+  "packages": {
+    ".": {
+      "component": "system",
+      "release-type": "node",
+      "exclude-paths": ["packages/envy"]
+    },
+    "packages/envy": {
+      "component": "envy",
+      "release-type": "node"
+    }
+  }
+}
