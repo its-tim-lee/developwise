@@ -2,6 +2,29 @@
   "name": "developwise",
   "version": "0.0.0",
   "private": true,
+  "description": "A TypeScript-first collection of tools, libraries, and agent workflows for cleaner, safer, maintainable, type-safe, and debuggable software.",
+  "keywords": [
+    "developer-tools",
+    "developwise",
+    "monorepo",
+    "tooling",
+    "typescript",
+    "vite"
+  ],
+  "homepage": "https://github.com/its-tim-lee/developwise#readme",
+  "bugs": {
+    "url": "https://github.com/its-tim-lee/developwise/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tim Lee",
+    "url": "https://github.com/its-tim-lee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-tim-lee/developwise.git"
+  },
+  "funding": "https://buymeacoffee.com/timlee",
   "workspaces": {
     "packages": [
       "apps/*",
