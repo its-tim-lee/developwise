@@ -1,6 +1,6 @@
 # Developwise
 
-> A collection of modern tools that make development more productive.
+> An TypeScript-first collections of tools, libraries, and agent workflows that improve developer reliability ⎯ building cleaner, safer, maintainable, type-safe, and debuggable software.
 
 ## Packages
 
