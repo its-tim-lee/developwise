@@ -8,7 +8,7 @@ interface InitOptions {
   cwd?: string;
 }
 
-export interface InitResult {
+interface InitResult {
   messages: string[];
 }
 

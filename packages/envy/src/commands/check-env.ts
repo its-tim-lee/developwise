@@ -1,6 +1,6 @@
 import { resolveProjectEnv } from "../helpers/index.ts";
 
-export interface CheckEnvOptions {
+interface CheckEnvOptions {
   appEnv?: string;
   stdout?: (message: string) => void;
 }

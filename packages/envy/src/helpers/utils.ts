@@ -4,7 +4,7 @@ export function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 
-export function renderZodIssuePath(issue: z.ZodIssue): string {
+function renderZodIssuePath(issue: z.ZodIssue): string {
   return issue.path.length > 0 ? issue.path.join(".") : "<root>";
 }
 

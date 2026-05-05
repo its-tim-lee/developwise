@@ -71,8 +71,9 @@
     "format": "vp fmt --write",
     "format-check": "vp fmt --check",
     "lint": "vp lint $(git ls-files --cached --others --exclude-standard '*.ts' ':!templates/**')",
+    "knip": "knip",
     "type-check": "vp exec tsc -p tsconfig.json --noEmit",
-    "check": "vp run format-check && vp run lint && vp run type-check",
+    "check": "vp run format-check && vp run lint && vp run knip && vp run type-check",
     "pack:dry": "npm pack --dry-run",
     "prepublishOnly": "vp run check && vp test && vp run build:package",
     "release": "npm publish --access public"
@@ -90,6 +91,7 @@
     "@types/node": "^25.5.0",
     "@typescript/native-preview": "7.0.0-dev.20260328.1",
     "bumpp": "^11.0.1",
+    "knip": "^6.11.0",
     "publint": "^0.3.18",
     "typescript": "^6.0.2",
     "vite-plus": "^0.1.14"

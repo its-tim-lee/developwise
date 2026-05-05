@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "bin/index.ts",
+    "src/index.ts",
+    "src/load-env-var.ts",
+    "tests/**/*.test.ts",
+    "vite.config.ts"
+  ],
+  "project": ["bin/**/*.ts", "src/**/*.ts", "tests/**/*.ts"],
+  "ignoreDependencies": ["@arethetypeswrong/core", "@typescript/native-preview", "bumpp", "publint"]
+}
