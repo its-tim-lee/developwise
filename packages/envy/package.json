@@ -1,6 +1,6 @@
 {
   "name": "@developwise/envy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vite-based tooling for environment variable cascade loading, schema validation, type generation, and process.env injection.",
   "keywords": [
     "dotenv",
