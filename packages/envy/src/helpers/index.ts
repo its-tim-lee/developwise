@@ -12,14 +12,15 @@ import type {
 } from "./types.ts";
 import { isObject, renderZodError } from "./utils.ts";
 
-const SCHEMA_FILE_NAME = "env.schema.ts";
+const CONFIG_FILE_NAME = "env.config.ts";
+const LEGACY_SCHEMA_FILE_NAME = "env.schema.ts";
 
 interface EnvFile {
   path: string;
   parsed: Record<string, string>;
 }
 
-interface SchemaModule {
+interface EnvConfigModule {
   schemaByAppEnv?: unknown;
 }
 
@@ -102,7 +103,7 @@ function isZodLikeSchema(value: unknown): boolean {
 
 function validateSchemaByAppEnv(value: unknown): SchemaByAppEnv {
   if (!isObject(value)) {
-    throw new Error("[envy] env.schema.ts must export an object named schemaByAppEnv.");
+    throw new Error("[envy] env.config.ts must export an object named schemaByAppEnv.");
   }
 
   const missingKeys = INTERNAL_APP_ENV_LIST.filter((appEnv) => !(appEnv in value));
@@ -135,30 +136,47 @@ function validateSchemaByAppEnv(value: unknown): SchemaByAppEnv {
   return value as SchemaByAppEnv;
 }
 
-function importUserSchemaModule(schemaPath: string): SchemaModule {
-  const importedModule = tsxRequire(schemaPath, import.meta.url) as SchemaModule & {
+function importUserEnvConfigModule(configPath: string): EnvConfigModule {
+  const importedModule = tsxRequire(configPath, import.meta.url) as EnvConfigModule & {
     default?: unknown;
   };
 
   return (
     isObject(importedModule.default) ? importedModule.default : importedModule
-  ) as SchemaModule;
+  ) as EnvConfigModule;
+}
+
+function renderEnvConfigFileName(configPath: string): string {
+  return path.basename(configPath);
+}
+
+function resolveUserEnvConfigPath(cwd: string): string {
+  const configPath = path.resolve(cwd, CONFIG_FILE_NAME);
+  if (existsSync(configPath)) {
+    return configPath;
+  }
+
+  const legacySchemaPath = path.resolve(cwd, LEGACY_SCHEMA_FILE_NAME);
+  if (existsSync(legacySchemaPath)) {
+    return legacySchemaPath;
+  }
+
+  throw new Error(
+    `[envy] Missing ${CONFIG_FILE_NAME} at project root: ${cwd}. ` +
+      `${LEGACY_SCHEMA_FILE_NAME} is still supported for existing projects.`,
+  );
 }
 
 function loadUserEnvSchema(cwd = process.cwd()): SchemaByAppEnv {
-  const schemaPath = path.resolve(cwd, SCHEMA_FILE_NAME);
+  const configPath = resolveUserEnvConfigPath(cwd);
 
-  if (!existsSync(schemaPath)) {
-    throw new Error(`[envy] Missing ${SCHEMA_FILE_NAME} at project root: ${cwd}.`);
+  const envConfigModule = importUserEnvConfigModule(configPath);
+
+  if (!("schemaByAppEnv" in envConfigModule)) {
+    throw new Error(`[envy] ${renderEnvConfigFileName(configPath)} must export schemaByAppEnv.`);
   }
 
-  const schemaModule = importUserSchemaModule(schemaPath);
-
-  if (!("schemaByAppEnv" in schemaModule)) {
-    throw new Error("[envy] env.schema.ts must export schemaByAppEnv.");
-  }
-
-  return validateSchemaByAppEnv(schemaModule.schemaByAppEnv);
+  return validateSchemaByAppEnv(envConfigModule.schemaByAppEnv);
 }
 
 function assertStringEnvValues(env: Record<string, unknown>): LoadedEnvVar {
@@ -170,7 +188,7 @@ function assertStringEnvValues(env: Record<string, unknown>): LoadedEnvVar {
     throw new Error(
       [
         "[envy] Env schema output must contain only string values.",
-        "Env files are string-based; parse booleans/numbers at usage sites instead of transforming them in env.schema.ts.",
+        "Env files are string-based; parse booleans/numbers at usage sites instead of transforming them in env.config.ts.",
         `Non-string keys: ${nonStringKeys.join(", ")}.`,
       ].join("\n"),
     );
@@ -191,7 +209,7 @@ function validateProjectEnv(env: Record<string, string>, cwd: string): LoadedEnv
   throw new Error(
     [
       `[envy] Invalid env vars for APP_ENV='${appEnv}'.`,
-      "Update env.schema.ts when adding a new env var.",
+      "Update env.config.ts when adding a new env var.",
       renderZodError(result.error),
     ].join("\n"),
   );
