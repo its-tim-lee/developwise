@@ -128,6 +128,46 @@ ${block(CONVENTIONAL_COMMIT.SCOPES)}
 `;
 }
 
+function workflowPublishReady(): string {
+  return `name: Publish readiness
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  envy:
+    name: "@developwise/envy publish dry run"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Vite+ and Node.js
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: "24"
+          cache: true
+
+      - name: Update npm CLI
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: vp install --frozen-lockfile
+
+      - name: Run readiness checks
+        run: vp run ready
+
+      - name: Reset Envy build output before publish dry run
+        run: rm -rf packages/envy/dist
+
+      - name: Dry-run @developwise/envy npm publish
+        working-directory: packages/envy
+        run: npm publish --dry-run --access public
+`;
+}
+
 function workflowReleaseMetadataCheck(): string {
   return `name: Release metadata check
 
@@ -178,6 +218,7 @@ const manifest = Object.fromEntries(packagePaths.map((path) => [path, readVersio
 const files = new Map<string, string>([
   ["release-please-config.json", json(releaseConfig)],
   [".release-please-manifest.json", json(manifest)],
+  [".github/workflows/publish-ready.yml", workflowPublishReady()],
   [".github/workflows/release-please.yml", workflowReleasePlease()],
   [".github/workflows/pr-lint.yml", workflowPrLint()],
   [".github/workflows/release-metadata-check.yml", workflowReleaseMetadataCheck()],
