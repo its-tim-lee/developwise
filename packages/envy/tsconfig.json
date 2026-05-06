@@ -24,13 +24,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": [
-    "bin/**/*.ts",
-    "src/**/*.ts",
-    "templates/**/*.ts",
-    "tests/**/*.ts",
-    "reset.d.ts",
-    "vite.config.ts"
-  ],
+  "include": ["bin/**/*.ts", "src/**/*.ts", "tests/**/*.ts", "reset.d.ts", "vite.config.ts"],
   "exclude": ["dist", "node_modules"]
 }
