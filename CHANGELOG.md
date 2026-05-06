@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/its-tim-lee/developwise/compare/system-v1.0.1...system-v1.0.2) (2026-05-06)
+
+
+### Bug Fixes
+
+* **system:** simulate publish to see if any issue in PR ([d84604f](https://github.com/its-tim-lee/developwise/commit/d84604fcae57ffe51977e96a4b37cb68b16c056b))
+
 ## [1.0.1](https://github.com/its-tim-lee/developwise/compare/system-v1.0.0...system-v1.0.1) (2026-05-06)
 
 

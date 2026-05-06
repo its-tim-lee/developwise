@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/its-tim-lee/developwise/compare/envy-v1.1.1...envy-v1.1.2) (2026-05-06)
+
+
+### Bug Fixes
+
+* **envy:** exclude templates from package type-check ([b8a6334](https://github.com/its-tim-lee/developwise/commit/b8a633427c45d7350bee42bd635159c8ad16d271))
+
 ## [1.1.1](https://github.com/its-tim-lee/developwise/compare/envy-v1.1.0...envy-v1.1.1) (2026-05-06)
 
 
