@@ -1,6 +1,6 @@
 {
   "name": "developwise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "A TypeScript-first collection of tools, libraries, and agent workflows for cleaner, safer, maintainable, type-safe, and debuggable software.",
   "keywords": [
