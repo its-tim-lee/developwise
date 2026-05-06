@@ -55,15 +55,47 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write # Required for npm Trusted Publishing / OIDC.
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v5
+      - name: Create or update GitHub releases
+        id: release
+        uses: googleapis/release-please-action@v5
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      - name: Checkout release commit
+        if: \${{ steps.release.outputs['packages/envy--release_created'] == 'true' }}
+        uses: actions/checkout@v5
+
+      - name: Setup Vite+ and Node.js
+        if: \${{ steps.release.outputs['packages/envy--release_created'] == 'true' }}
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: "24"
+          cache: true
+
+      # Trusted Publishing requires npm 11.5.1+ and a supported Node.js runtime.
+      # Keep npm current so publish authentication does not fail due to an old bundled npm.
+      - name: Update npm CLI
+        if: \${{ steps.release.outputs['packages/envy--release_created'] == 'true' }}
+        run: npm install -g npm@latest
+
+      # Do not set NODE_AUTH_TOKEN here. npm authenticates through the Trusted Publisher
+      # connection configured on npmjs.com for @developwise/envy.
+      - name: Install dependencies
+        if: \${{ steps.release.outputs['packages/envy--release_created'] == 'true' }}
+        run: vp install --frozen-lockfile
+
+      # Trusted Publishing generates npm provenance automatically; --provenance is unnecessary.
+      - name: Publish @developwise/envy to npm
+        if: \${{ steps.release.outputs['packages/envy--release_created'] == 'true' }}
+        working-directory: packages/envy
+        run: npm publish --access public
 `;
 }
 
