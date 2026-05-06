@@ -19,8 +19,11 @@ const ENVY_SCRIPTS = {
   "generate:env-types": "envy generate-env-types",
 } as const;
 
+const ENV_CONFIG_FILE_NAME = "env.config.ts";
+const LEGACY_ENV_SCHEMA_FILE_NAME = "env.schema.ts";
+
 const TEMPLATE_FILE_NAMES = [
-  "env.schema.ts",
+  ENV_CONFIG_FILE_NAME,
   ".env.default",
   ".env",
   ".env.development.defaults",
@@ -72,6 +75,14 @@ function copyTemplateIfMissing(cwd: string, templatesDirectory: string, fileName
   return `${created ? "created" : "kept existing"} ${fileName}`;
 }
 
+function copyEnvConfigTemplateIfMissing(cwd: string, templatesDirectory: string): string {
+  if (existsSync(path.resolve(cwd, LEGACY_ENV_SCHEMA_FILE_NAME))) {
+    return `kept existing ${LEGACY_ENV_SCHEMA_FILE_NAME}`;
+  }
+
+  return copyTemplateIfMissing(cwd, templatesDirectory, ENV_CONFIG_FILE_NAME);
+}
+
 function updatePackageJsonScripts(cwd: string): string {
   const packageJsonPath = path.resolve(cwd, "package.json");
 
@@ -111,7 +122,11 @@ export function initProject({ cwd = process.cwd() }: InitOptions = {}): InitResu
   messages.push(updatePackageJsonScripts(cwd));
 
   for (const fileName of TEMPLATE_FILE_NAMES) {
-    messages.push(copyTemplateIfMissing(cwd, templatesDirectory, fileName));
+    messages.push(
+      fileName === ENV_CONFIG_FILE_NAME
+        ? copyEnvConfigTemplateIfMissing(cwd, templatesDirectory)
+        : copyTemplateIfMissing(cwd, templatesDirectory, fileName),
+    );
   }
 
   messages.push(updateGitignore(cwd));

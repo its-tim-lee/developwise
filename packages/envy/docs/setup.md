@@ -72,14 +72,16 @@ Envy uses dotenv-compatible parsing and expansion under the hood. Variables can 
 
 ### Validation Contract
 
-Before Envy can validate env var values, the project needs a validation contract. The generated `env.schema.ts` file is where each supported application environment defines its allowed env keys and value constraints.
+Before Envy can validate env var values, the project needs a validation contract. The generated `env.config.ts` file is where each supported application environment defines its allowed env keys and value constraints.
+
+> Note: Existing projects with `env.schema.ts` continue to work, but new projects should use `env.config.ts`.
 
 The mental model: before filling exact values into env files, define how those values should behave:
 
 - Which variables can each environment define?
 - What value constraints should each variable satisfy?
 
-If an var is passed from the script of package.json, it should be defined in `env.schema.ts` too.
+If an env var is passed from the script of package.json, it should be defined in `env.config.ts` too.
 
 ### Environment Variable Typings
 
@@ -93,7 +95,7 @@ To generate them, run:
 npm run generate:env-types
 ```
 
-You typically do so when `env.schema.ts` changes.
+You typically do so when `env.config.ts` changes.
 
 For details, see [The design of `env.d.ts`](./concepts.md#the-design-of-envdts).
 
@@ -185,4 +187,4 @@ Since Envy asks for a small mental shift from Vite's default environment model, 
 
 - Forget about `NODE_ENV` and Vite mode as application-environment selectors. Use `APP_ENV` for that job.
 - You decide which runtime loads env vars: build config, bundled app code, test setup, scripts, or any combination of them.
-- From now on, define the contract in `env.schema.ts` first, then implement the values in the corresponding env var files.
+- From now on, define the contract in `env.config.ts` first, then implement the values in the corresponding env var files.
