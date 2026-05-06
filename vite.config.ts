@@ -6,7 +6,9 @@ export default defineConfig({
     "vite.config.ts": "vp lint --fix",
     "packages/**": () => "vp run -r check",
   },
-  fmt: {},
+  fmt: {
+    ignorePatterns: ["**/*.md"],
+  },
   lint: { options: { typeAware: true, typeCheck: true } },
   run: {
     cache: true,

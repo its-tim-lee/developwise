@@ -25,5 +25,7 @@ export default defineConfig({
       typeCheck: true,
     },
   },
-  fmt: {},
+  fmt: {
+    ignorePatterns: ["**/*.md"],
+  },
 });
