@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/its-tim-lee/developwise/compare/envy-v1.0.3...envy-v1.1.0) (2026-05-06)
+
+
+### Features
+
+* **envy:** support env.config.ts ([09733df](https://github.com/its-tim-lee/developwise/commit/09733df146220a86b24039a1cf74e9100531b14f))
+
 ## [1.0.3](https://github.com/its-tim-lee/developwise/compare/envy-v1.0.2...envy-v1.0.3) (2026-05-06)
 
 ### Bug Fixes
