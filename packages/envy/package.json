@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/its-tim-lee/developwise.git",
+    "url": "https://github.com/its-tim-lee/developwise.git",
     "directory": "packages/envy"
   },
   "funding": "https://buymeacoffee.com/timlee",
