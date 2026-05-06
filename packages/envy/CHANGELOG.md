@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/its-tim-lee/developwise/compare/envy-v1.1.0...envy-v1.1.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* **system:** prevent Vite+ formatter to work on markdown ([22824e9](https://github.com/its-tim-lee/developwise/commit/22824e9bed2fb259ae6757d15d2a1945cc5358b4))
+
 ## [1.1.0](https://github.com/its-tim-lee/developwise/compare/envy-v1.0.3...envy-v1.1.0) (2026-05-06)
 
 
